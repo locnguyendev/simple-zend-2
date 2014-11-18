@@ -1,71 +1,55 @@
-<!DOCTYPE html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zend Framework 2 - Skeleton Project</title>
-    <link rel="stylesheet" href="/css/bootstrap-fileupload.min.css" type="text/css" />
-    <link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" type="text/css" />
-    <?php
-    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-            ->prependStylesheet($this->basePath() . '/css/style.css')
-    ?>
-    <?php
-    echo $this->headScript()->offsetSetFile(10, $this->basePath() . '/js/jquery-1.7.min.js')
-            ->offsetSetFile(20, $this->basePath() . '/js/jquery-ui-1.9.1.min.js')
-            ->offsetSetFile(30, $this->basePath() . '/js/custom.js')
-    ?>
-</head>
-<body>
-    <div class="main-container">
-        <div id="layout">
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <div id="top">
-                    <h1 id="logo"><a href="#" title="logo">Zf2 Skeleton Application</a> </h1>
-
-
-
-                    <div id="nav">
-                        <ul>
-                            <li> <a href="<?php echo $this->url('home') ?>" title="Home">Home</a></li>
-                            <?php if ($this->user()->role != 'guest'): ?>
-                            <li> <a href="<?php echo $this->url('user') ?>" title="All Events">Users</a></li>
-                            <li> <a href="<?php echo $this->url('generator') ?>" title="News">Generator</a></li>
-                            <li> <a href="<?php echo $this->url('user', array('action' => 'add')) ?>" title="News">Add User</a></li>
-                            <?php endif; ?>
-                            <?php if ($this->user()->role == 'guest'): ?>
-                                <li> <a href="<?php echo $this->url('auth') ?>" title="News">Login</a></li>
-                            <?php else : ?>
-                                <li> <a href="<?php echo $this->url('auth', array('action' => 'logout')) ?>" title="News">Logout</a></li>
-                            <?php endif; ?>
-
-                        </ul>
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
                 </div>
-
-                <div id="header"> 
-                    Welcome! <b><?php echo $this->user()->first_name.' '.$this->user()->last_name ?></b>
-                </div>
-
-                <div id="content">
-                    <?php echo $this->content; ?>
-                </div>
-
-
-
-
-
-
-                <div class="clr"></div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
-
-            <div id="footer">
-
-                Developed By Umair Abid
-
-            </div>
-
-        </div>
-    </div>
-</body>
-
+        </nav>
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zend Framework 2 - Skeleton Project</title>
+    <link rel="stylesheet" href="/css/bootstrap-fileupload.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" type="text/css" />
+    <?php
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+            ->prependStylesheet($this->basePath() . '/css/style.css')
+    ?>
+    <?php
+    echo $this->headScript()->offsetSetFile(10, $this->basePath() . '/js/jquery-1.7.min.js')
+            ->offsetSetFile(20, $this->basePath() . '/js/jquery-ui-1.9.1.min.js')
+            ->offsetSetFile(30, $this->basePath() . '/js/custom.js')
+    ?>
+</head>
+<body>
+    <div class="main-container">
+        <div id="layout">
+            <div class="container">
+                <div id="top">
+                    <h1 id="logo"><a href="#" title="logo">Zf2 Skeleton Application</a> </h1>
+
+
+
+                    <div id="nav">
+                        <ul>
+                            <li> <a href="<?php echo $this->url('home') ?>" title="Home">Home</a></li>
+                            <?php if ($this->user()->role != 'guest'): ?>
+                            <li> <a href="<?php echo $this->url('user') ?>" title="All Events">Users</a></li>
+                            <li> <a href="<?php echo $this->url('generator') ?>" title="News">Generator</a></li>
+                            <li> <a href="<?php echo $this->url('user', array('action' => 'add')) ?>" title="News">Add User</a></li>
+                            <?php endif; ?>
+                            <?php if ($this->user()->role == 'guest'): ?>
+                                <li> <a href="<?php echo $this->url('auth') ?>" title="News">Login</a></li>
+                            <?php else : ?>
+                                <li> <a href="<?php echo $this->url('auth', array('action' => 'logout')) ?>" title="News">Logout</a></li>
+                            <?php endif; ?>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="header"> 
+                    Welcome! <b><?php echo $this->user()->first_name.' '.$this->user()->last_name ?></b>
+                </div>
+
+                <div id="content">
+                    <?php echo $this->content; ?>
+                </div>
+
+
+
+
+
+
+                <div class="clr"></div>
+            </div>
+
+            <div id="footer">
+
+                Developed By Umair Abid
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

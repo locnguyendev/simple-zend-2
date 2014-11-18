@@ -1,4 +1,4 @@
-simple-zend-2
-=============
+zf2-skeleton-application
+========================
 
-Just a simple project for learning Zend Framework 2
+Zf2 Skeleton Application initilized with basic Acl, unified grid system, loaded with zf2 generator, developed by following the best practices of zend framework 2
